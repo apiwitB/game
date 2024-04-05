@@ -33,14 +33,14 @@ public class Player extends GameObject {
     public Player(PlatformScene scene, int x, int y) {
         this.scene = scene;
         this.previousY = y;
-        jumpSound = new Sound("E:/game-project/audio/jump.wav");
+        jumpSound = new Sound(FilePath.JUMP_SOUND);
 
-        idleSprites = new SpriteAnimation("E:/game-project/Assets/images/mario/Idle_", 1, 1);
-        runningSprites = new SpriteAnimation("E:/game-project/Assets/images/mario/Run_", 3, 5);
-        runningSpritesl = new SpriteAnimation("E:/game-project/Assets/images/mario/Runl_", 3, 5);
-        jumpingUpSprites = new SpriteAnimation("E:/game-project/Assets/images/mario/Jump_", 1, 1);
-        jumpingUpSpritesl = new SpriteAnimation("E:/game-project/Assets/images/mario/Jumpl_", 1, 1);
-        jumpingDownSprites = new SpriteAnimation("E:/game-project/Assets/images/mario/Jump_", 1, 1);
+        idleSprites = new SpriteAnimation(FilePath.MARIO_IDLE, 1, 1);
+        runningSprites = new SpriteAnimation(FilePath.MARIO_RUN, 3, 5);
+        runningSpritesl = new SpriteAnimation(FilePath.MARIO_RUNL, 3, 5);
+        jumpingUpSprites = new SpriteAnimation(FilePath.MARIO_JUMP, 1, 1);
+        jumpingUpSpritesl = new SpriteAnimation(FilePath.MARIO_JUMPL, 1, 1);
+        jumpingDownSprites = new SpriteAnimation(FilePath.MARIO_JUMP, 1, 1);
 
 
         this.x = x - idleSprites.getWidth() / 2;
@@ -130,24 +130,17 @@ public class Player extends GameObject {
 
     private void tryMoveY(int dy) {
         int newY = y + dy;
-        // footX and footY is the anticipated position of Player's feet, used
-        // for checking if Player will be on a platform
         int footX = x + getCurrentSprites().getWidth() / 2;
         int footY = newY + getCurrentSprites().getHeight();
         Map map = scene.getMap();
-        // headX and headY is the position of Player's head
         int headX = x + getCurrentSprites().getWidth() / 2;
-        int headY = newY; // อาจต้องปรับเป็นตำแหน่งของหัวตัวละครตามการออกแบบของเกม
+        int headY = newY; 
 
-
-        // Negative verticalSpeed means jumping up -- we check for platform
-        // grounding only when jumping (falling) down
+       
         if (verticalSpeed >= 0  && map.isPlatform(footX, footY)) {
             int groundLevel = footY / map.getTileHeight() * map.getTileHeight();
             int sinkingDepth = footY - groundLevel;
-            // If the anticipated foot position sinks within a specified
-            // amount (32 here) into the platform, place Player back on the
-            // ground level, otherwise let Player falls further
+  
             if (sinkingDepth < 32 ) {
                 newY = newY - sinkingDepth;
                 verticalSpeed = 0;
@@ -164,7 +157,6 @@ public class Player extends GameObject {
             grounded = false;
         }
     
-        // เปลี่ยนตำแหน่งของตัวละครใหม่
         y = newY;
 
 

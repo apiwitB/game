@@ -22,12 +22,11 @@ public class Menu extends JPanel {
         frame.setSize(1920, 755);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        themeSound = new Sound("E:/game-project/audio/theme.wav");
+        themeSound = new Sound(FilePath.THEME_SOUND);
 
 
         try {
-            startImage = ImageIO.read(new File("E:/game-project/Assets/images/start-screen.png"));
-            // gameOverImage = ImageIO.read(new File("E:/game-project/Assets/images/game-over.png"));
+            startImage = ImageIO.read(new File(FilePath.manuGame));
             if (startImage == null) {
                 System.err.println("Unrecognized image type.");
                 System.exit(1);
@@ -42,7 +41,6 @@ public class Menu extends JPanel {
         startButton = new JButton("Start Game");
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // เมื่อกดปุ่ม "Start Game" ให้เริ่มเกม
                 startGame();
             }
         });

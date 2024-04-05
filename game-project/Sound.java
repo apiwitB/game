@@ -15,11 +15,11 @@ public class Sound {
     }
 
     public void themeSong(){
-        loadSound("E:/game-project/audio/theme.wav");
+        loadSound(FilePath.THEME_SOUND);
     }
 
     public void GameOversong(){
-        loadSound("E:/game-project/audio/game-over.wav");
+        loadSound(FilePath.GAME_OVER_SOUND);
     }
 
     private void loadSound(String filePath) {

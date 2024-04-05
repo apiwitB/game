@@ -7,13 +7,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
+
 public class Background {
     private BufferedImage image;
 
   
     public Background() {
         try {
-            image = ImageIO.read(new File("E:/game-project/Assets/images/background.png"));
+            image = ImageIO.read(new File(FilePath.BACKGROUND_IMAGE));
             if (image == null) {
                 System.err.println("Unrecognized image type.");
                 System.exit(1);

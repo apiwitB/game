@@ -21,7 +21,7 @@ public class Map {
 
         for (int i = 0; i < 27; i++) {
             try {
-                String filename = String.format("E:/game-project/Assets/images/assets/%d.png", i + 1);
+                String filename = String.format("%s%d.png", FilePath.TILE_IMAGE_PATH, i + 1);
                 mapTiles[i] = ImageIO.read(new File(filename));
                 if (mapTiles[i] == null) {
                     System.err.println("Unrecognized image type.");
